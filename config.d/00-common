@@ -1,0 +1,5 @@
+# vim: set syntax=sh:
+
+crawl() {
+    wget -o wget.log -r --spider -e robots=off $@
+}

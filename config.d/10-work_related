@@ -1,0 +1,31 @@
+# vim: set syntax=sh:
+
+function now {
+    local file="$HOME/.now"
+    local today="$(date "+%Y-%m-%d")"
+    local stamp="$(date "+%Y-%m-%d %H:%M:%S")"
+
+    if [[ -z "${@}" ]]; then
+        grep --color=never "$today" "$file" | cut -d' ' -f2-
+        echo "***"
+        date "+%H:%M:%S"
+    else
+        echo "$stamp" - "$@" >> "$file"
+    fi
+}
+
+function yesterday {
+    local file="$HOME/.now"
+    local yesterday=$(/bin/date -v-1d "+%Y-%m-%d")
+    
+    grep $yesterday $file | cut -d' ' -f2-
+}
+
+alias todo=todo.sh
+alias lunch="$HOME/src/scripts/lunch.sh"
+alias standup="yesterday | mutt -s "yesterday" colbyo@copio.us"
+
+alias s3zum="s3cmd -c ~/.s3cfg-zum"
+alias s3rej="s3cmd -c ~/.s3cfg-rej"
+alias s3cop="s3cmd -c ~/.s3cfg-cop"
+alias s3nau="s3cmd -c ~/.s3cfg-nau"

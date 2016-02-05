@@ -1,0 +1,3 @@
+# vim: set syntax=sh:
+
+alias fleet='ssh -t -o LogLevel=QUIET deploy@aux.chromeind.f.nchr.io --'

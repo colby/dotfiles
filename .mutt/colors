@@ -1,0 +1,64 @@
+# Text colors - general functions
+color normal  white       default             # normal text
+color status  black        white              # status bar, last and first row
+color search  brightwhite red                 # search results
+color message brightwhite default             # information messages, last row
+color error   brightred   default             # error messages, last row
+color markers brightred   default             # the + sign at the start of broken lines
+
+# Text colors - message index and attachment menu
+color indicator  black           white           # current message selected
+color tree       color240        default         # Threads' arrow
+color index      white           default ~F      # important messages    ! flag - command "F"
+color index      brightwhite     default ~N      # nouveaux messages N flag - command "N"
+color index      black           white ~T        # tagged messages   * flag - command "t"
+color index      white          default ~U       # non-lu messages
+color index      color238        default ~D      # messages supprimé     D flag - commands "d"/"u"
+
+# Headers
+color header   white       default     ^(From):
+color header   white       default     ^(Subject):
+color header   white       default     ^(To):
+color header   white       default     ^(Date):
+color header   white       default     ^(In-Reply-To):
+color hdrdefault magenta   default
+
+# Attachement, URI, mail, signature
+color attachment  blue        black                             # attachments
+color body        brightblue  black "(ftp|http)://[^ ]+"        # point out URLs
+color body        cyan        black [-a-z_0-9.]+@[-a-z_0-9.]+   # e-mail addresses
+color signature   brightblue  black                             # the signature (after sigdashes)
+
+# Special text - Bold, underline
+color bold      brightwhite  default                             # boldface text
+color underline brightgreen  default                             # underlined text
+
+# Quotes
+ color quoted    color241      default                             # quoted text, 1st quote level
+ color quoted1   color238      default                             # quoted text, 2nd quote level
+ color quoted2   color238      default                             # quoted text, 3rd quote level
+ color quoted3   color234       default                             # quoted text, 4th quoet level
+ color quoted4   color234       default                             # quoted text, 4th quoet level
+ color quoted5   color234       default                             # quoted text, 4th quoet level
+
+
+# http://aperiodic.net/phil/configs/mutt/colors
+# color normal      white          black
+# color hdrdefault  green          default
+# color quoted      green          default
+# color quoted1     yellow         default
+# color quoted2     red            default
+# color signature   cyan           default
+# color indicator   brightyellow   red
+# color error       brightred      default
+# color status      brightwhite    blue
+# color tree        brightmagenta  black
+# color tilde       blue           default
+# color attachment  brightyellow   default
+# color markers     brightred      default
+# color message     white          black
+# color search      brightwhite    magenta
+# color bold        brightyellow   default
+# # if you don't like the black progress bar at the bottom of the screen,
+# # comment out the following line
+# color progress    white          black

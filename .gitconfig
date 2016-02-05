@@ -1,0 +1,31 @@
+[user]
+name = Colby Olson
+email = me@colbyolson.com
+
+[github]
+user = colby
+
+[push]
+default = tracking
+
+[credential]
+helper = osxkeychain
+
+[core]
+editor = vim
+pager = less -R
+
+[alias]
+rh = reset --hard
+cm = commit -m
+st = status -s
+d = diff --word-diff
+tidy = ! git remote prune origin && git gc && git clean -d
+info = remote -v
+mylog = log what = log -p --follow
+today = log --since='1am' --shortstat --oneline --author='Colby Olson'
+yesterday = log --since='yesterday' --until='yesterday' --shortstat --oneline --author='Colby Olson'
+dff = difftool
+
+[color]
+ui = auto

@@ -1,0 +1,161 @@
+# TODO:
+# Change columns in index, can we change top titlebar too?
+# Toggle pager on/off
+# Show collapsed threads in index
+# What does break thread do?
+# Auto expand on cursor over it
+# Auto expand on new mail in thread
+# Statusbar tweaks
+
+# Give us colors!
+source ~/.mutt/colors
+
+# GPG, bitches!
+source "gpg --decrypt ~/.mutt/passwords.gpg |"
+
+# Load passwords from GPG
+#password=`gpg --decrypt --batch -q ~/.mutt/password.gpg`
+#set imap_pass=$password
+#set smtp_pass=$password
+
+set editor          = 'vim -c "set spell spelllang=en_us" -c "set tw=72" -c "set filetype=mail" -c "setlocal fo+=aw"'
+set text_flowed     = yes
+
+#auto_view text/x-vcard text/html text/plain
+auto_view text/plain text/html text/enriched
+alternative_order text/plain text/html text
+
+# Name Info
+set realname        = "Colby Olson"
+set from            = "colbyo@copio.us"
+
+# IMAP Settings
+set folder          = "imaps://imap.gmail.com:993"
+set imap_user       = "colbyo@copiousinc.com"
+set imap_keepalive  = 100
+set imap_check_subscribed
+set imap_idle
+set timeout         = 35
+set mail_check      = 30
+
+#unset imap_passive
+# Should speed things up for searching/reading
+folder-hook . 'set read_inc=1000'
+set sleep_time      = 0
+set wait_key        = no        # shut up, mutt
+
+# SMTP Settings
+set smtp_url        = "smtps://$imap_user@smtp.gmail.com:465"
+set sendmail_wait   = 0
+
+# SSL
+set ssl_force_tls   = yes
+set ssl_starttls    = yes
+
+set date_format     = "%m/%d %k:%M"
+set index_format    = "%Z  %D  %-20.20F  %s"
+set sort            = threads                         # like gmail
+set sort_aux        = reverse-last-date-received  # like gmail
+set uncollapse_jump                        # don't collapse on an unread message
+# set sort_re                                # thread based on regex
+# set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Folders
+mailboxes           = "+INBOX"
+set spoolfile       = "+INBOX"
+set postponed       = "+[Gmail]/Drafts"
+set signature       = "~/.mutt/signature"
+set strict_threads  = "yes"
+set indent_str      = ">"
+set nomark_old          # i don't care about whether a message is old
+set nomarkers           # so long URIs can still be cut and pasted
+set mailcap_path    = ~/.mutt/mailcap
+set header_cache    = ~/.mutt/cache/headers
+set message_cachedir= ~/.mutt/cache/bodies
+set certificate_file= ~/.mutt/certificates
+unset record
+
+set pipe_decode          # strip headers and eval mimes when piping
+set thorough_search      # strip headers and eval mimes before searching
+
+# Viewing email
+set to_chars        = ' +>-<L'
+set copy            = no
+set move            = no
+set auto_tag        = yes
+ignore  *                                 # ignore all headers by default
+unignore date from user-agent x-mailer to cc reply-to subject # but show these
+
+my_hdr X-Custom: Up yours.
+
+set pager_index_lines = 15 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+
+# set edit_headers                     # show headers when composing
+set fast_reply                       # skip to compose when replying
+set askcc                            # ask for CC:
+set fcc_attach                       # save attachments with the body
+unset mime_forward                   # forward attachments as part of body
+set forward_format = "Fwd: %s"       # format of subject when forwarding
+set forward_decode                   # decode when forwarding
+set attribution = "On %d, %n wrote:" # format of quoting header
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+
+# set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+#alternative_order text/html text/plain text/enriched 
+
+macro pager \Cu "|urlview<enter>" "call urlview to open links"
+
+bind attach <return> view-mailcap
+
+# Binds
+bind index - collapse-thread
+bind index _ collapse-all
+
+# VIM bindings
+bind index gg first-entry
+bind index G  last-entry
+bind pager E  edit
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+
+set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
+bind editor <Tab> complete-query
+bind editor ^T    complete
+
+# Gmail style keybindings
+bind  index "^" imap-fetch-mail
+bind  editor <space> noop
+bind  index,pager c  mail           #Compose
+macro index,pager e  "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive conversation"
+bind  generic     x  tag-entry      #Select Conversation
+bind  index       x  tag-thread     #Select Conversation
+bind  pager       x  tag-message    #Select Conversation
+bind  index,pager s  flag-message   #Star a message
+macro index,pager +  <save-message>=[Gmail]/Important<enter><enter> "Mark as important"
+macro index,pager !  <save-message>=[Gmail]/Spam<enter><enter>      "Report spam"
+bind  index,pager a  group-reply    #Reply all
+bind  index,pager \# delete-thread  #Delete
+macro index,pager I  <set-flag>O                                    "Mark as read"
+macro index,pager U  <clear-flag>O                                  "Mark as unread"
+macro index,pager ga "<change-folder>=[Gmail]/All Mail<enter>"      "Go to all mail"
+macro index,pager gs <change-folder>=[Gmail]/Starred<enter>         "Go to 'Starred'"
+macro index,pager gd <change-folder>=[Gmail]/Drafts<enter>          "Go to 'Drafts'"
+macro index,pager gl <change-folder>?                               "Go to 'Label'"
+macro index,pager gi <change-folder>=INBOX<enter>                   "Go to inbox"
+macro index,pager gt "<change-folder>=[Gmail]/Sent Mail<enter>"     "Go to 'Sent Mail'"
+
+folder-hook +INBOX 'macro index,pager y "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive conversation"'
+folder-hook +[Gmail]/Starred bind  index,pager y flag-message #"Toggle star"
+folder-hook +[Gmail]/Trash macro index,pager y <save-message>=INBOX<enter><enter> "Move to inbox"
+
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"

@@ -1,0 +1,77 @@
+# vim: set syntax=sh:
+
+RESTORE='\[\033[0m\]'
+RED='\[\033[00;31m\]'
+GREEN='\[\033[00;32m\]'
+YELLOW='\[\033[00;33m\]'
+PURPLE='\[\033[00;35m\]'
+GRAY='\[\033[00;37m\]'
+
+# Normal user is purple, root is red.
+if [ "$(id -u)" == '0' ]; then
+        USER_COLOR=$RED
+    else
+        USER_COLOR=$PURPLE
+fi
+
+# save last status and force new line
+export _Z_NO_PROMPT_COMMAND=1
+PROMPT_COMMAND='export STATUS=$?; _z --add "$(command pwd '$_Z_RESOLVE_SYMLINKS' 2>/dev/null)" 2>/dev/null;'
+
+export PS1="\n${USER_COLOR}\w${GREEN}\$(stopped_jobs)${RESTORE}\$(git_prefix)${RED}\$(git_prompt_info)\n${RESTORE}\$(last_status)\$ "
+
+# only show status when non zero
+function last_status() {
+    last_status="${STATUS}"
+    if [ ${last_status} -gt 0 ]; then
+        echo "${last_status}"
+    fi
+}
+
+# get total amount of stopped jobs
+function stopped_jobs() {
+    job=$(jobs -s | wc -l | sed -e "s/ //g")
+    if [ ${job} -gt 0 ]; then
+        echo " ${job}"
+    else
+        echo ""
+    fi
+}
+
+# only show '/ <git>' when in directory
+function git_prefix() {
+    ISGIT=$(git rev-parse --is-inside-work-tree 2>/dev/null)
+    if [ ! -z ${ISGIT} ]; then
+        echo " / "
+    fi
+}
+
+function git_current_branch() {
+    ref=$(git symbolic-ref HEAD 2>/dev/null)
+    ref=${ref##refs/heads/}
+    echo "$ref"
+}
+
+function git_prompt_info() {
+    gitstat=$(git status 2>/dev/null)
+
+    if [[ $(echo "${gitstat}" | grep -c "Changes not staged \| Untracked files") -gt 0 ]]; then
+        GIT_CHAR="${GIT_CHAR}?"
+    fi
+
+    if [[ $(echo "${gitstat}" | grep -c "Changes to be committed") -gt 0 ]]; then
+        GIT_CHAR="${GIT_CHAR}!"
+    fi
+
+    if [[ $(echo "${gitstat}" | grep -c "nothing to commit") -gt 0 ]]; then
+        GIT_CHAR=""
+    fi
+
+    if [[ $(echo "${gitstat}" | grep -c "HEAD detached") -gt 0 ]]; then
+        GIT_CHAR="${GIT_CHAR}%"
+    fi
+
+    if [[ "$(git_current_branch)" ]]; then
+        echo "$(git_current_branch)$GIT_CHAR"
+    fi
+}

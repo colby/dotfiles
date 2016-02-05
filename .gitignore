@@ -1,0 +1,12 @@
+# OSX
+.DS_Store
+
+.vim/.netrwhist
+
+# mutt
+.mutt/certificates
+.mutt/headers
+.mutt/cache
+
+# vim
+.vim/swap/*
