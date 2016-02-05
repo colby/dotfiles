@@ -85,8 +85,8 @@ export CURLOPT_SSL_VERIFYPEER="FALSE"
 export SSL_CERT_FILE='/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt'
 
 # Load other configs
-if [ -d "${HOME}/.conf.d" ]; then
-    for conf in ${HOME}/.conf.d/*; do
+if [ -d "${HOME}/config.d" ]; then
+    for conf in ${HOME}/config.d/*; do
         if [ -r "${conf}" ]; then
             . "${conf}"
         fi
