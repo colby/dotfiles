@@ -29,6 +29,9 @@ alternative_order text/plain text/html text
 set realname        = "Colby Olson"
 set from            = "colbyo@copio.us"
 
+#set smtp_authenticators = 'gssapi:login'
+set smtp_authenticators = 'login'
+
 # IMAP Settings
 set folder          = "imaps://imap.gmail.com:993"
 set imap_user       = "colbyo@copiousinc.com"
