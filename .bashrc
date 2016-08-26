@@ -82,7 +82,7 @@ alias be="bundle exec"
 
 # Curl
 export CURLOPT_SSL_VERIFYPEER="FALSE"
-export SSL_CERT_FILE='/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt'
+export SSL_CERT_FILE='/usr/local/etc/openssl/certs/cacert.pem'
 
 # Load other configs
 if [ -d "${HOME}/config.d" ]; then
