@@ -38,16 +38,24 @@ set nofoldenable
 highlight Folded guibg=grey guifg=blue
 
 " Markdown
-au BufNewFile,BufFilePre,BufRead *.markdown,*.mdown,*.md set filetype=markdown
+au BufNewFile,BufFilePre,BufRead *.markdown,*.mdown,*.md,*.txt set filetype=markdown
 autocmd Filetype markdown setlocal nofoldenable spell textwidth=80
 
 " Ruby
+au BufNewFile,BufFilePre,BufRead Vagrantfile,*.rb,Berksfile* set filetype=ruby
 autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
+
+" Git commits
+au BufNewFile,BufRead COMMIT_EDITMSG set spell
 
 " Leader stuffs
 let mapleader=","
 nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 nnoremap <space> :nohlsearch<cr>
+
+"make < > shifts keep selection
+vnoremap < <gv
+vnoremap > >gv
 
 " Remap jk to leave insert mode
 imap jk <ESC>
@@ -85,3 +93,9 @@ let g:ctrlp_cmd = 'CtrlP'       " Remapping for CtrlP plugin
 let g:ctrlp_show_hidden = 1
 
 let g:ruby_path = system('echo $HOME/.rbenv/shims')
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
