@@ -3,3 +3,5 @@
 function gsearch {
     git log --grep "$@" | sed -n '/^commit/p' | cut -d\  -f 2 | xargs git show
 }
+
+alias china="TZ=Asia/Shanghai date"

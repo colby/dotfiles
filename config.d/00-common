@@ -1,5 +1,7 @@
 # vim: set syntax=sh:
 
+alias agent="eval $(ssh-agent)"
+
 crawl() {
     wget -o wget.log -r --spider -e robots=off $@
 }
