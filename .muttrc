@@ -35,10 +35,10 @@ set smtp_authenticators = 'login'
 # IMAP Settings
 set folder          = "imaps://imap.gmail.com:993"
 set imap_user       = "colbyo@copiousinc.com"
-set imap_keepalive  = 100
+set imap_keepalive  = 60
 set imap_check_subscribed
 set imap_idle
-set timeout         = 35
+set timeout         = 0
 set mail_check      = 30
 
 #unset imap_passive
@@ -76,6 +76,7 @@ set mailcap_path    = ~/.mutt/mailcap
 set header_cache    = ~/.mutt/cache/headers
 set message_cachedir= ~/.mutt/cache/bodies
 set certificate_file= ~/.mutt/certificates
+set message_cache_clean=yes
 unset record
 
 set pipe_decode          # strip headers and eval mimes when piping

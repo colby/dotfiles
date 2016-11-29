@@ -1,23 +1,16 @@
-# MS Word documents
-application/msword; ~/.mutt/view_attachment.sh %s "-" '/Applications/TextEdit.app'
+application/msword; ~/.mutt/bin/view_attachment.sh %s "-" '/Applications/TextEdit.app'
 
-# Images
-image/jpg; ~/.mutt/view_attachment.sh %s jpg
-image/jpeg; ~/.mutt/view_attachment.sh %s jpg
-image/pjpeg; ~/.mutt/view_attachment.sh %s jpg
-image/png; ~/.mutt/view_attachment.sh %s png
-image/gif; ~/.mutt/view_attachment.sh %s gif
+application/pdf; ~/.mutt/bin/view_attachment.sh %s pdf
 
-# PDFs
-application/pdf; ~/.mutt/view_attachment.sh %s pdf
+image/jpg; ~/.mutt/bin/view_attachment.sh %s jpg
+image/jpeg; ~/.mutt/bin/view_attachment.sh %s jpg
+image/pjpeg; ~/.mutt/bin/view_attachment.sh %s jpg
+image/png; ~/.mutt/bin/view_attachment.sh %s png
+image/gif; ~/.mutt/bin/view_attachment.sh %s gif
 
-# HTML
-text/html; ~/.mutt/view_attachment.sh %s "-" "/Applications/Google\ Chrome.app/"
+text/html; ~/.mutt/bin/view_html %s; copiousoutput
+#text/html; ~/.mutt/view_attachment.sh %s "-" "/Applications/Google\ Chrome.app/"
 #text/html; /usr/local/bin/links -dump %s; nametemplate=%s.html; copiousoutput
-#text/html; /usr/bin/open '/Applications/Google\ Chrome.app/' %s; test=test -n "$DISPLAY"; needsterminal
 #text/html; /usr/local/bin/lynx %s; copiousoutput; needsterminal; nametemplate=%s.html
-#text/html; lynx -dump -width=78 -nolist %s; copiousoutput; needsterminal; nametemplate=%s.html
-#text/html; /usr/local/bin/lynx %s; copiousoutput; nametemplate=%s.html
 
-# Unidentified files
-application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
+application/octet-stream; ~/.mutt/bin/view_attachment.sh %s "-"
