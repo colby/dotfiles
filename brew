@@ -20,8 +20,6 @@ czmq
 dateutils
 dcraw
 dirmngr
-docker
-docker-machine
 exiftool
 faac
 ffmpeg
@@ -48,11 +46,9 @@ html2text
 htop-osx
 httping
 hub
-ical-buddy
 icu4c
 iftop
 imagemagick
-irssi
 jasper
 jpeg
 jq
@@ -100,15 +96,12 @@ mpv
 msgpack
 multimarkdown
 mutt
-mysql
 namebench
 ncdu
 netcat
 nettle
-nginx
 ngrep
 nmap
-node
 nspr
 offlineimap
 ohcount
@@ -136,7 +129,6 @@ ragel
 rbenv
 readline
 reattach-to-user-namespace
-redis
 rrdtool
 ruby
 ruby-build
@@ -149,7 +141,6 @@ sloccount
 smake
 source-highlight
 spark
-sphinx
 spidermonkey
 sqlite
 ssh-copy-id
@@ -158,7 +149,6 @@ texi2html
 tinc
 tmux
 todo-txt
-tokyo-cabinet
 tor
 torsocks
 tree

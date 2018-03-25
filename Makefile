@@ -1,4 +1,5 @@
 DOTFILES := $(shell pwd)
+PACKAGES := $(shell cat ${DOTFILES}/brew)
 
 install: install-brew \
          install-vim \
