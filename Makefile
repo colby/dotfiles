@@ -11,21 +11,22 @@ install-brew:
 	$(shell for f in $$(cat ${DOTFILES}/brew); do brew install $$f; done)
 
 install-shell:
-	ln -fs $(DOTFILES)/.bashrc ${HOME}/.bashrc
-	ln -fs $(DOTFILES)/config.d ${HOME}/config.d
+	ln -fs $(DOTFILES)/.bashrc ${HOME}
+	ln -fs $(DOTFILES)/.bash_profile ${HOME}
+	ln -fs $(DOTFILES)/config.d ${HOME}
 
 install-vim:
 	brew install vim
 	rm -rf ${HOME}/.vim
-	ln -fs $(DOTFILES)/.vim ${HOME}/.vim
+	ln -fs $(DOTFILES)/.vim ${HOME}
 	mkdir -p ${HOME}/.vim/swap
-	ln -fs $(DOTFILES)/.vimrc ${HOME}/.vimrc
+	ln -fs $(DOTFILES)/.vimrc ${HOME}
 
 install-tmux:
 	brew install tmux
-	ln -fs $(DOTFILES)/.tmux.conf ${HOME}/.tmux.conf
+	ln -fs $(DOTFILES)/.tmux.conf ${HOME}
 
 install-git:
 	brew install git hub
-	ln -fs $(DOTFILES)/.gitconfig ${HOME}/.gitconfig
-	ln -fs $(DOTFILES)/.gitignore ${HOME}/.gitignore
+	ln -fs $(DOTFILES)/.gitconfig ${HOME}
+	ln -fs $(DOTFILES)/.gitignore ${HOME}
