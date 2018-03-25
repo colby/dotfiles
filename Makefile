@@ -7,6 +7,7 @@ install: install-vim \
 
 install-shell:
 	ln -fs $(DOTFILES)/.bashrc ${HOME}/.bashrc
+	ln -fs $(DOTFILES)/config.d ${HOME}/config.d
 
 install-vim:
 	brew install vim
