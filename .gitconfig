@@ -9,7 +9,7 @@ user = colby
 default = tracking
 
 [credential]
-	helper = osxkeychain
+helper = osxkeychain
 
 [core]
 editor = vim
