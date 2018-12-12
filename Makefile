@@ -16,7 +16,7 @@ install-brew:
 install-shell:
 	ln -fs ${DOTFILES}/.bashrc ${HOME}
 	ln -fs ${DOTFILES}/.bash_profile ${HOME}
-	ln -fs ${DOTFILES}/config.d ${HOME}
+	ln -fs ${DOTFILES}/.config.d ${HOME}
 
 install-vim:
 	brew install vim
