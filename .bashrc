@@ -1,32 +1,20 @@
 # vim: set syntax=sh:
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-
-# Prefer US English and use UTF-8.
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
-# History
 shopt -s histappend
 export HISTCONTROL=ignoreboth:erasedups
 export HISTIGNORE="&:ls:[bf]g:exit"
 export HISTSIZE=""
 
-# If there's rbenv, load it!
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# Add homebrew to $PATH
-export PATH=/opt/chefdk/bin:/Users/colbyolson/.rbenv/shims:/Users/colbyolson/src/scripts:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=~/src/scripts:$PATH
 
 export TZ="America/Los_Angeles"
 export EDITOR='vim'
 export GIT_EDITOR='vim'
-export VIRTUALENV_USE_DISTRIBUTE="TRUE"
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Code
+export PROJECT_HOME=$HOME/src
 
-# Don't clear the screen after quitting a man page.
 export MANPAGER="less -X"
 
 alias please="sudo"
@@ -65,8 +53,6 @@ alias j='z'
 alias t="tmux"
 alias serv="python -m SimpleHTTPServer $1"
 
-function hyde() { python ~/Code/bin/hyde/hyde.py "$1" "$2" "$3"; }
-
 alias speed="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
 alias wanip="curl http://ifconfig.co"
 
@@ -76,9 +62,6 @@ function ipinfo() { curl "http://ipinfo.io/$1"; }
 alias pretty_whois="whois -h whois-servers.net"
 
 export BLOG_PATH=/var/www/colbyolson.com
-
-# Ruby related
-alias be="bundle exec"
 
 # Curl
 export CURLOPT_SSL_VERIFYPEER="FALSE"
