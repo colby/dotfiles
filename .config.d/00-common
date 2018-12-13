@@ -1,7 +1,8 @@
 # vim: set syntax=sh:
 
 alias agent="eval $(ssh-agent)"
-
-crawl() {
-    wget -o wget.log -r --spider -e robots=off $@
+function gsearch {
+    git log --grep "$@" | sed -n '/^commit/p' | cut -d\  -f 2 | xargs git show
 }
+
+alias china="TZ=Asia/Shanghai date"

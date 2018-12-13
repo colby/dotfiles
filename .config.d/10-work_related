@@ -22,10 +22,53 @@ function yesterday {
 }
 
 alias todo=todo.sh
-alias lunch="$HOME/src/scripts/lunch.sh"
-alias standup="yesterday | mutt -s "yesterday" colbyo@copio.us"
+alias lunch="~/src/scripts/lunch.sh"
 
-alias s3zum="s3cmd -c ~/.s3cfg-zum"
-alias s3rej="s3cmd -c ~/.s3cfg-rej"
-alias s3cop="s3cmd -c ~/.s3cfg-cop"
-alias s3nau="s3cmd -c ~/.s3cfg-nau"
+function nmount {
+cat <<'EOF' > /tmp/mountscript
+try
+    mount volume "smb://WSGC;colson2@ssldap/netlogon"
+on error
+    delay 20
+    try
+        mount volume "smb://WSGC;colson2@ssldap/netlogon"
+    end try
+end try
+
+try
+    mount volume "smb://WSGC;colson2@RJFile1/web"
+on error
+    delay 20
+    try
+        mount volume "smb://WSGC;colson2@RJFile1/web"
+    end try
+end try
+
+try
+    mount volume "smb://WSGC;colson2@na2220rj1/Shares"
+on error
+    delay 20
+    try
+        mount volume "smb://WSGC;colson2@na2220rj1/Shares"
+    end try
+end try
+
+try
+    mount volume "smb://WSGC;colson2@wsgc.com/corp/pt/rejuv"
+on error
+    delay 20
+    try
+        mount volume "smb://WSGC;colson2@wsgc.com/corp/pt/rejuv"
+    end try
+end try
+EOF
+
+    echo "Attempting to mount network shares"
+    osascript /tmp/mountscript
+    if [ $? != 0 ]
+    then
+        echo "Something went wrong"
+    else
+        echo "Mounted!"
+    fi
+}

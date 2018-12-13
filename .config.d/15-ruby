@@ -1,0 +1,8 @@
+# vim: set syntax=sh:
+
+if which rbenv > /dev/null
+then
+    eval "$(rbenv init -)"
+fi
+
+alias be="bundle exec"

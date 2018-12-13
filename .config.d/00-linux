@@ -22,7 +22,7 @@ if [[ $platform == 'Linux' ]]; then
     #TODO: Check aplay or play
     alias meep="afplay ~/.dotfiles/meep.mp3"
 
-    # You're dumb, urlview.
+    # fuck you urlview.
     export BROWSER=chromium
 
 fi

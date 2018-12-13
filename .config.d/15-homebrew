@@ -1,0 +1,5 @@
+# vim: set syntax=sh:
+
+export PATH="/usr/local/bin:$PATH"
+export HOMEBREW_NO_EMOJI=1
+export HOMEBREW_NO_AUTO_UPDATE=1

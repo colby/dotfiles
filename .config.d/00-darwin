@@ -2,10 +2,6 @@
 
 platform=$(uname)
 if [[ $platform == 'Darwin' ]]; then
-    # Update via Homebrew
-    alias update="brew update"
-    alias upgrade="brew upgrade"
-
     # Bash completion
     [[ -f "$(brew --prefix)/etc/bash_completion" ]] && . "$(brew --prefix)/etc/bash_completion"
 
@@ -13,20 +9,20 @@ if [[ $platform == 'Darwin' ]]; then
     # z > j!
     [[ -f "$(brew --prefix)/etc/profile.d/z.sh" ]] && . "$(brew --prefix)/etc/profile.d/z.sh"
 
-    # Clears terminal logs for faster shell startup
-    alias rmlogs="sudo rm -rf /private/var/log/asl/*.asl"
-
     # Make meep.
     alias meep="afplay ~/.dotfiles/meep.mp3"
+
+    # Clears terminal logs for faster shell startup
+    alias rmlogs="sudo rm -rf /private/var/log/asl/*.asl"
 
     # Flush DNS on Mac OSX
     alias flush="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 
-    # Lock the screen (when going AFK)
+    # Lock the screen
     alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
     # Return battery percentage or charging icon.
-    alias battery="/Users/colbyolson/src/scripts/battery.sh"
+    alias battery="~/src/scripts/battery.sh"
 
     # Security stuffs
     alias shred="srm"
@@ -34,6 +30,5 @@ if [[ $platform == 'Darwin' ]]; then
 
     alias vlc="/Applications/VLC.app/Contents/MacOS/VLC"
 
-    alias music="mkdir -p /tmp/music; sshfs colby@colbyolson.com:files/ -p 1214 /tmp/music/"
     alias date=gdate
 fi
