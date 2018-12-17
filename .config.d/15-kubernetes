@@ -1,0 +1,4 @@
+# vim: set syntax=sh:
+
+alias k=kubectl
+source <(kubectl completion bash)
