@@ -63,10 +63,6 @@ alias pretty_whois="whois -h whois-servers.net"
 
 export BLOG_PATH=/var/www/colbyolson.com
 
-# Curl
-export CURLOPT_SSL_VERIFYPEER="FALSE"
-export SSL_CERT_FILE='/usr/local/etc/openssl/certs/cacert.pem'
-
 # Load other configs
 if [ -d "${HOME}/.config.d" ]; then
     for conf in ${HOME}/.config.d/*; do
