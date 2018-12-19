@@ -1,0 +1,10 @@
+# vim: set syntax=sh:
+
+alias spplay="osascript -e 'tell application \"Spotify\" to play'"
+alias spnext="osascript -e 'tell application \"Spotify\" to next track'"
+alias sppause="osascript -e 'tell application \"Spotify\" to playpause'"
+alias spprev="osascript -e '
+            tell application \"Spotify\"
+                set player position to 0
+                previous track
+            end tell'"
