@@ -1,5 +1,7 @@
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
+call pathogen#infect()
+call pathogen#helptags()
+
+filetype plugin on
 
 set encoding=utf-8
 scriptencoding utf-8
