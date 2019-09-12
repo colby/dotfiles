@@ -48,22 +48,24 @@ highlight Folded guibg=grey guifg=blue
 " au BufNewFile,BufFilePre,BufRead Vagrantfile,*.rb,Berksfile* set filetype=ruby
 " autocmd FileType ruby setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
-" Git commits
+" git commits
 au BufNewFile,BufRead COMMIT_EDITMSG set spell
 
-" Leader stuffs
+" leader stuffs
 let mapleader=","
 nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
 nnoremap <space> :nohlsearch<cr>
 
-"make < > shifts keep selection
+" make < > shifts keep selection
 vnoremap < <gv
 vnoremap > >gv
 
-" Remap jk to leave insert mode
-imap jk <ESC>
+" remap ctrl+e to ESC
+nnoremap <C-e> <C-[>
+inoremap <C-e> <C-[>
+vnoremap <C-e> <C-[>
 
-" Don't use the arrow keys in all modes
+" don't use the arrow keys in all modes
 noremap  <Up>    <NOP>
 noremap  <Down>  <NOP>
 noremap  <Left>  <NOP>
