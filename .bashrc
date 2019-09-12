@@ -3,10 +3,11 @@
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
-shopt -s histappend
-export HISTCONTROL=ignoreboth:erasedups
-export HISTIGNORE="&:ls:[bf]g:exit"
-export HISTSIZE=""
+shopt -s histappend # when you close a session, your history will be appended to the .bash_history file rather than overwriting
+export HISTCONTROL=ignoreboth
+export HISTIGNORE='ls:bg:fg:history:exit'
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
 
 export PATH=~/src/scripts:$PATH
 
@@ -56,12 +57,22 @@ alias serv="python -m SimpleHTTPServer $1"
 alias speed="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
 alias wanip="curl http://ifconfig.co"
 
-function ipinfo() { curl "http://ipinfo.io/$1"; }
+function ipinfo() {
+    curl "http://ipinfo.io/$1"
+}
+function zoom() { 
+    open "zoommtg://zoom.us/join?action=join&confno=$1"
+}
 
 # Nice WHOIS lookups.
 alias pretty_whois="whois -h whois-servers.net"
+alias pune="TZ=Asia/Kolkata date"
 
 export BLOG_PATH=/var/www/colbyolson.com
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 # Load other configs
 if [ -d "${HOME}/.config.d" ]; then
