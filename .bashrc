@@ -36,9 +36,6 @@ if ls --color > /dev/null 2>&1; then
         colorflag="-G"
 fi
 
-# Stop wasting time searching through these directories.
-export GREP_OPTIONS='--color=auto --exclude=*.pyc --exclude-dir=.git --exclude-dir=.vagrant --exclude=./var/cache/mage*'
-
 alias ~="cd ~"
 alias ..="cd .."
 alias ...="cd ../.."
