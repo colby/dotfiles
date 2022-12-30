@@ -9,7 +9,7 @@ export HISTIGNORE='ls:bg:fg:history:exit'
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
-export PATH=~/src/scripts:$PATH
+export PATH=~/.rd/bin:~/src/scripts:$PATH
 
 export TZ="America/Los_Angeles"
 export EDITOR='vim'

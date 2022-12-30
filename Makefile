@@ -8,7 +8,6 @@ install: install-brew \
          install-shell
 
 install-brew:
-	@ruby -e "$$(curl -kfsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" # NOTE: ignoring SSL
 	for f in ${PACKAGES}; \
         	do brew install $$f; \
 	done
