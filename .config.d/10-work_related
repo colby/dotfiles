@@ -25,50 +25,48 @@ alias todo=todo.sh
 alias lunch="~/src/scripts/lunch.sh"
 
 function nmount {
-cat <<'EOF' > /tmp/mountscript
-try
-    mount volume "smb://WSGC;colson2@ssldap/netlogon"
-on error
-    delay 20
-    try
-        mount volume "smb://WSGC;colson2@ssldap/netlogon"
-    end try
-end try
+    mounts=(
+        'RJFile1/web'
+        'na2220rj1/Shares'
+        'ssldap/netlogon'
+        'wsgc.com/corp/pt/rejuv'
+    )
+    ifconfig utun1 | grep '10.170' || (echo 'You must join the corporate VPN first!' && exit 1)
+    echo "Attempting to mount network shares..."
+    for m in "${mounts[@]}"
+    do
+        osascript "mount volume 'smb://WSGC;$USER@$m'"
+    done
+    echo 'Done.'
+}
 
-try
-    mount volume "smb://WSGC;colson2@RJFile1/web"
-on error
-    delay 20
-    try
-        mount volume "smb://WSGC;colson2@RJFile1/web"
-    end try
-end try
-
-try
-    mount volume "smb://WSGC;colson2@na2220rj1/Shares"
-on error
-    delay 20
-    try
-        mount volume "smb://WSGC;colson2@na2220rj1/Shares"
-    end try
-end try
-
-try
-    mount volume "smb://WSGC;colson2@wsgc.com/corp/pt/rejuv"
-on error
-    delay 20
-    try
-        mount volume "smb://WSGC;colson2@wsgc.com/corp/pt/rejuv"
-    end try
-end try
-EOF
-
-    echo "Attempting to mount network shares"
-    osascript /tmp/mountscript
-    if [ $? != 0 ]
+sshp ()
+{
+    if [ -z $1 ]
     then
-        echo "Something went wrong"
-    else
-        echo "Mounted!"
+        echo "You need to pass a hostname!"
+        return 0
     fi
+    last_modified=15
+    file=~/.sshpass
+    hr_diff=$(( (`date +%s` - `date -r $file +%s`) / 3600 ))
+    host=$1
+    shift
+    if [ $hr_diff -gt $last_modified ]
+    then
+        echo "Please update $file with new AD password!"
+    else
+        sshpass -f $file ssh -o 'StrictHostKeyChecking no' a_$USER@$host $@
+    fi
+}
+
+setsshpass () 
+{
+    if [ -z $1 ]
+    then
+        echo "Please include a password to save."
+        return 0
+    fi
+    file=~/.sshpass
+    echo "$1" > $file
 }

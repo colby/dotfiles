@@ -9,7 +9,7 @@ export HISTIGNORE='ls:bg:fg:history:exit'
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
-export PATH=~/.rd/bin:~/src/scripts:$PATH
+export PATH="~/.rd/bin:~/src/scripts:$PATH"
 
 export TZ="America/Los_Angeles"
 export EDITOR='vim'
@@ -35,9 +35,6 @@ if ls --color > /dev/null 2>&1; then
         # BSD
         colorflag="-G"
 fi
-
-# Stop wasting time searching through these directories.
-export GREP_OPTIONS='--color=auto --exclude=*.pyc --exclude-dir=.git --exclude-dir=.vagrant --exclude=./var/cache/mage*'
 
 alias ~="cd ~"
 alias ..="cd .."
@@ -70,9 +67,11 @@ alias pune="TZ=Asia/Kolkata date"
 
 export BLOG_PATH=/var/www/colbyolson.com
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+echo 'export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"' >> ~/.bash_profile
 
 # Load other configs
 if [ -d "${HOME}/.config.d" ]; then

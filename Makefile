@@ -1,8 +1,7 @@
 DOTFILES := $(shell pwd)
 PACKAGES := $(shell cat ${DOTFILES}/brew)
 
-install: install-brew \
-         install-vim \
+install: install-vim \
          install-tmux \
          install-git \
          install-shell
@@ -18,14 +17,12 @@ install-shell:
 	ln -fs ${DOTFILES}/.config.d ${HOME}
 
 install-vim:
-	brew install vim
 	rm -rf ${HOME}/.vim
 	ln -fs ${DOTFILES}/.vim ${HOME}
 	mkdir -p ${HOME}/.vim/swap
 	ln -fs ${DOTFILES}/.vimrc ${HOME}
 
 install-tmux:
-	brew install tmux
 	ln -fs ${DOTFILES}/.tmux.conf ${HOME}
 
 install-git:

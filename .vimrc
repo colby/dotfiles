@@ -15,6 +15,7 @@ set completeopt=menuone,longest,preview
 set wildmode=list:longest
 set confirm
 
+set t_BE=                " death to bracketed paste
 colorscheme molokai
 set t_Co=256             " 256 colors
 
