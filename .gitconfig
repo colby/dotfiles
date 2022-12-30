@@ -1,6 +1,7 @@
 [user]
 name = Colby Olson
-email = me@colbyolson.com
+email = colson2@wsgc.com
+	signingkey = EB263310AC1B7D36
 
 [github]
 user = colby
@@ -29,3 +30,7 @@ dff = difftool
 
 [color]
 ui = auto
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg

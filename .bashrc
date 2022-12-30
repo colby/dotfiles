@@ -9,7 +9,8 @@ export HISTIGNORE='ls:bg:fg:history:exit'
 export HISTFILESIZE=1000000
 export HISTSIZE=1000000
 
-export PATH=~/src/scripts:$PATH
+export PATH="~/src/scripts:$PATH"
+#export PATH="/usr/local/opt/curl-openssl/bin/:$PATH"
 
 export TZ="America/Los_Angeles"
 export EDITOR='vim'
@@ -70,9 +71,11 @@ alias pune="TZ=Asia/Kolkata date"
 
 export BLOG_PATH=/var/www/colbyolson.com
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+echo 'export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"' >> ~/.bash_profile
 
 # Load other configs
 if [ -d "${HOME}/.config.d" ]; then
